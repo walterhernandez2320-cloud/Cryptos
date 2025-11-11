@@ -3,65 +3,70 @@
 <head>
   <meta charset="utf-8" />
   <title>Proyecto Cryptos — Gráficos por selección</title>
+
   <style>
-    body { font-family: system-ui, Arial, sans-serif; margin: 0; padding: 24px; }
-    .contenedor { max-width: 900px; margin: 0 auto; }
-    h1 { text-align: center; margin-bottom: 16px; }
-    .panel { display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; }
-    #grafico { display: block; max-width: 100%; height: auto; margin: 24px auto; }
-    .hint { text-align: center; color: #666; }
+    body { 
+      font-family: system-ui, Arial, sans-serif; 
+      margin: 0; 
+      padding: 24px; 
+      background-color: #121212; /* Fondo oscuro */
+      color: #f5f5f5; /* Texto claro */
+    }
+
+    .contenedor { 
+      max-width: 900px; 
+      margin: 0 auto; 
+    }
+
+    h1 { 
+      text-align: center; 
+      margin-bottom: 16px; 
+      color: #00ffc8; /* Color tipo "neón" crypto */
+    }
+
+    .panel { 
+      display: flex; 
+      gap: 12px; 
+      align-items: center; 
+      justify-content: center; 
+      flex-wrap: wrap; 
+    }
+
+    select { 
+      padding: 8px 12px; 
+      border-radius: 8px; 
+      border: none; 
+      background-color: #1f1f1f; 
+      color: #00ffc8; 
+      font-size: 16px; 
+    }
+
+    #grafico { 
+      display: block; 
+      max-width: 100%; 
+      height: auto; 
+      margin: 24px auto; 
+      border-radius: 12px; 
+      box-shadow: 0 0 12px rgba(0, 255, 200, 0.3);
+    }
+
+    .hint { 
+      text-align: center; 
+      color: #aaa; 
+    }
   </style>
 </head>
+
 <body>
   <div class="contenedor">
     <h1>TRABAJO PRÁCTICO DE PROGRAMACIÓN</h1>
+
     <div class="panel">
       <label for="crypto">Elegí la cripto:</label>
       <select id="crypto">
         <option value="">-- Seleccionar --</option>
-        <!-- Agregá/acortá la lista según tus PNG disponibles -->
         <option>Bitcoin</option>
         <option>Ethereum</option>
         <option>Binance Coin</option>
-        <option>Cardano</option>
-        <option>Solana</option>
-      </select>
-    </div>
 
-    <p class="hint">Los gráficos se cargan al elegir una cripto. Guardá tus imágenes como <code>plots/Nombre_marketcap.png</code>.</p>
-
-    <img id="grafico" alt="Gráfico de la cripto seleccionada" style="display:none;" />
-
-    <script>
-      // Convierte "Binance Coin" -> "Binance_Coin_marketcap.png"
-      function nombreAArchivo(nombre) {
-        return "plots/" + nombre.replace(/\s+/g, "_") + "_marketcap.png";
-      }
-
-      const select = document.getElementById("crypto");
-      const img = document.getElementById("grafico");
-
-      select.addEventListener("change", () => {
-        const nombre = select.value;
-        if (!nombre) {
-          img.style.display = "none";
-          img.removeAttribute("src");
-          img.alt = "Gráfico de la cripto seleccionada";
-          return;
-        }
-        const ruta = nombreAArchivo(nombre);
-        img.style.display = "block";
-        img.src = ruta;
-        img.alt = "Marketcap histórico — " + nombre;
-
-        // Si el archivo no existe, mostramos un aviso suave
-        img.onerror = () => {
-          img.style.display = "none";
-          alert("No encontré el archivo: " + ruta + "\nVerificá el nombre o colocá el PNG en la carpeta plots/");
-        };
-      });
-    </script>
-  </div>
-</body>
-</html>
 
