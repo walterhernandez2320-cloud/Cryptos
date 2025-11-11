@@ -2,34 +2,26 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <title>Proyecto Cryptos — Gráficos por selección</title>
+  <title>Proyecto Cryptos — Gráficos de Marketcap</title>
 
   <style>
     body { 
-      font-family: system-ui, Arial, sans-serif; 
-      margin: 0; 
-      padding: 24px; 
-      background-color: #121212; /* Fondo oscuro */
-      color: #f5f5f5; /* Texto claro */
+      font-family: system-ui, Arial, sans-serif;
+      margin: 0;
+      padding: 24px;
+      background-color: #121212; 
+      color: #f5f5f5;
     }
 
     .contenedor { 
       max-width: 900px; 
       margin: 0 auto; 
+      text-align: center;
     }
 
     h1 { 
-      text-align: center; 
-      margin-bottom: 16px; 
-      color: #00ffc8; /* Color tipo "neón" crypto */
-    }
-
-    .panel { 
-      display: flex; 
-      gap: 12px; 
-      align-items: center; 
-      justify-content: center; 
-      flex-wrap: wrap; 
+      color: #00ffc8; 
+      margin-bottom: 16px;
     }
 
     select { 
@@ -39,20 +31,21 @@
       background-color: #1f1f1f; 
       color: #00ffc8; 
       font-size: 16px; 
+      margin-top: 10px;
     }
 
     #grafico { 
-      display: block; 
+      display: none; 
       max-width: 100%; 
       height: auto; 
-      margin: 24px auto; 
-      border-radius: 12px; 
-      box-shadow: 0 0 12px rgba(0, 255, 200, 0.3);
+      margin: 30px auto; 
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 255, 200, 0.3);
     }
 
     .hint { 
-      text-align: center; 
       color: #aaa; 
+      font-size: 0.9em; 
     }
   </style>
 </head>
@@ -61,32 +54,78 @@
   <div class="contenedor">
     <h1>TRABAJO PRÁCTICO DE PROGRAMACIÓN</h1>
 
-    <div class="panel">
-      <label for="crypto">Elegí la cripto:</label>
-      <select id="crypto">
-        <option value="">-- Seleccionar --</option>
-        <option>Aave</option>
-        <option>Binance Coin</option>
-        <option>Bitcoin</option>
-        <option>Cardano</option>
-        <option>Chainlink</option>
-        <option>Cosmos</option>
-        <option>Crypto.com Coin</option>
-        <option>Dogecoin</option>
-        <option>Eos</option>
-        <option>Ethereum</option>
-        <option>IOTA</option>
-        <option>LiteCoin</option>
-        <option>Monero</option>
-        <option>NEM</option>
-        <option>Polkadot</option>
-        <option>Solana</option>
-        <option>Stellar</option>
-        <option>TRON</option>
-        <option>Tether</option>
-        <option>USD Coin</option>
-        <option>Uniswap</option>
-        <option>Wrapped Bitcoin</option>
-        <option>XRP</option>
+    <p>Elegí una criptomoneda para ver su gráfico:</p>
+
+    <select id="crypto">
+      <option value="">-- Seleccionar --</option>
+      <option>Aave</option>
+      <option>Binance Coin</option>
+      <option>Bitcoin</option>
+      <option>Cardano</option>
+      <option>Chainlink</option>
+      <option>Cosmos</option>
+      <option>Crypto.com Coin</option>
+      <option>Dogecoin</option>
+      <option>Eos</option>
+      <option>Ethereum</option>
+      <option>IOTA</option>
+      <option>LiteCoin</option>
+      <option>Monero</option>
+      <option>NEM</option>
+      <option>Polkadot</option>
+      <option>Solana</option>
+      <option>Stellar</option>
+      <option>TRON</option>
+      <option>Tether</option>
+      <option>USD Coin</option>
+      <option>Uniswap</option>
+      <option>Wrapped Bitcoin</option>
+      <option>XRP</option>
+    </select>
+
+    <p class="hint">
+      Las imágenes deben estar en la carpeta <code>plots/</code> con el formato:<br>
+      <code>Marketcap_Nombre.png</code> (por ejemplo <code>Marketcap_Bitcoin.png</code>)
+    </p>
+
+    <img id="grafico" alt="Gráfico de la cripto seleccionada" />
+
+  </div>
+
+  <script>
+    // Función para convertir el nombre seleccionado en nombre de archivo
+    function nombreAArchivo(nombre) {
+      // Reemplaza espacios por guiones bajos: "Binance Coin" → "Binance_Coin"
+      return "plots/Marketcap_" + nombre.replace(/\s+/g, "_") + ".png";
+    }
+
+    const select = document.getElementById("crypto");
+    const img = document.getElementById("grafico");
+
+    select.addEventListener("change", () => {
+      const nombre = select.value;
+
+      if (!nombre) {
+        img.style.display = "none";
+        img.src = "";
+        return;
+      }
+
+      const ruta = nombreAArchivo(nombre);
+      img.onerror = () => {
+        img.style.display = "none";
+        alert("No encontré la imagen: " + ruta + "\nVerificá el nombre del archivo en la carpeta plots/");
+      };
+
+      img.onload = () => {
+        img.style.display = "block";
+      };
+
+      img.src = ruta + "?v=" + Date.now(); // evita problemas de caché
+      img.alt = "Marketcap — " + nombre;
+    });
+  </script>
+</body>
+</html>
 
 
