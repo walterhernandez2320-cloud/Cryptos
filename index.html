@@ -2,311 +2,66 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Proyecto Cryptos — Panel interactivo</title>
-  <!-- Estilos básicos -->
+  <title>Proyecto Cryptos — Gráficos por selección</title>
   <style>
-    :root{--bg:#0f172a;--card:#111827;--muted:#93a4b0;--text:#e5e7eb;--accent:#60a5fa}
-    *{box-sizing:border-box}
-    body{font-family:system-ui,Segoe UI,Roboto,Arial; margin:0; background:var(--bg); color:var(--text)}
-    header{padding:24px 16px; text-align:center; border-bottom:1px solid #1f2937}
-    header h1{margin:0 0 6px 0; font-size:clamp(20px,3vw,28px)}
-    header p{margin:0;color:var(--muted)}
-
-    .container{max-width:1100px; margin:24px auto; padding:0 16px; display:grid; gap:16px}
-    .panel{background:var(--card); border:1px solid #1f2937; border-radius:16px; padding:16px}
-    .panel h2{margin:0 0 12px 0; font-size:20px}
-
-    .controls{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-    @media (min-width:880px){ .controls{grid-template-columns:2fr 1fr 1fr 1fr auto} }
-
-    label{font-size:12px; color:var(--muted); display:block; margin-bottom:6px}
-    select, input[type="date"], button{
-      width:100%; padding:10px 12px; border:1px solid #243043; border-radius:10px; background:#0b1020; color:var(--text);
-    }
-    select[multiple]{min-height:160px}
-    button{cursor:pointer; background:linear-gradient(180deg,#1e293b,#0b1020); border-color:#2b3a55}
-    button.primary{background:linear-gradient(180deg,#2563eb,#1d4ed8); border-color:#1e40af}
-
-    .summary{display:grid; grid-template-columns:repeat(2,1fr); gap:12px}
-    @media (min-width:880px){ .summary{grid-template-columns:repeat(4,1fr)} }
-
-    .card{background:#0b1020; border:1px solid #1f2937; border-radius:12px; padding:12px}
-    .card .label{font-size:12px; color:var(--muted)}
-    .card .value{font-size:18px; margin-top:6px}
-
-    .muted{color:var(--muted)}
-    canvas{background:#0b1020; border:1px solid #1f2937; border-radius:12px; padding:8px}
-    footer{padding:24px 16px; text-align:center; color:var(--muted)}
-    a{color:var(--accent)}
-    .hint{font-size:12px; color:var(--muted); margin-top:6px}
+    body { font-family: system-ui, Arial, sans-serif; margin: 0; padding: 24px; }
+    .contenedor { max-width: 900px; margin: 0 auto; }
+    h1 { text-align: center; margin-bottom: 16px; }
+    .panel { display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; }
+    #grafico { display: block; max-width: 100%; height: auto; margin: 24px auto; }
+    .hint { text-align: center; color: #666; }
   </style>
-  <!-- Librerías desde CDN (funcionan en GitHub Pages) -->
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
-  <header>
-    <h1>TRABAJO PRÁCTICO — Panel interactivo de criptomonedas</h1>
-    <p>Seleccioná una o más monedas, un rango de fechas y el métrico a visualizar. Los datos se cargan desde tus CSV.</p>
-  </header>
+  <div class="contenedor">
+    <h1>TRABAJO PRÁCTICO DE PROGRAMACIÓN</h1>
+    <div class="panel">
+      <label for="crypto">Elegí la cripto:</label>
+      <select id="crypto">
+        <option value="">-- Seleccionar --</option>
+        <!-- Agregá/acortá la lista según tus PNG disponibles -->
+        <option>Bitcoin</option>
+        <option>Ethereum</option>
+        <option>Binance Coin</option>
+        <option>Cardano</option>
+        <option>Solana</option>
+      </select>
+    </div>
 
-  <main class="container">
-    <!-- Panel de controles -->
-    <section class="panel">
-      <h2>Controles</h2>
-      <div class="controls">
-        <div>
-          <label for="selCoins">Monedas (múltiple)</label>
-          <select id="selCoins" multiple></select>
-          <div class="hint">Tip: Ctrl/Cmd + clic para seleccionar varias</div>
-        </div>
-        <div>
-          <label for="metric">Métrico</label>
-          <select id="metric">
-            <option value="Marketcap">Marketcap</option>
-            <option value="Close">Precio de cierre (Close)</option>
-            <option value="Volume">Volumen (Volume)</option>
-            <option value="High">High</option>
-            <option value="Low">Low</option>
-            <option value="Open">Open</option>
-          </select>
-        </div>
-        <div>
-          <label for="fromDate">Desde</label>
-          <input type="date" id="fromDate" />
-        </div>
-        <div>
-          <label for="toDate">Hasta</label>
-          <input type="date" id="toDate" />
-        </div>
-        <div style="display:flex; gap:8px; align-items:end;">
-          <button id="btnHoy">Todo el histórico</button>
-          <button class="primary" id="btnAplicar">Aplicar</button>
-        </div>
-      </div>
-    </section>
+    <p class="hint">Los gráficos se cargan al elegir una cripto. Guardá tus imágenes como <code>plots/Nombre_marketcap.png</code>.</p>
 
-    <!-- Resumen -->
-    <section class="panel">
-      <h2>Resumen</h2>
-      <div id="summary" class="summary">
-        <div class="card">
-          <div class="label">Monedas seleccionadas</div>
-          <div class="value" id="sumCoins">0</div>
-        </div>
-        <div class="card">
-          <div class="label">Rango de fechas</div>
-          <div class="value" id="sumRange">—</div>
-        </div>
-        <div class="card">
-          <div class="label">Último valor (promedio)</div>
-          <div class="value" id="sumLast">—</div>
-        </div>
-        <div class="card">
-          <div class="label">Máximo histórico (promedio)</div>
-          <div class="value" id="sumMax">—</div>
-        </div>
-      </div>
-      <p class="muted" style="margin-top:12px">Nota: los promedios se calculan sobre las monedas seleccionadas en el rango elegido.</p>
-    </section>
+    <img id="grafico" alt="Gráfico de la cripto seleccionada" style="display:none;" />
 
-    <!-- Gráfico -->
-    <section class="panel">
-      <h2>Gráfico</h2>
-      <canvas id="chart" height="120"></canvas>
-      <p class="hint">Si no aparece nada, revisá que tus archivos <code>cryptos_unidas.csv</code> y <code>criptomonedas_unicas.csv</code> estén en la misma carpeta que este HTML.</p>
-    </section>
-  </main>
-
-  <footer>
-    Hecho para GitHub Pages — carga estática de CSV, sin backend.
-  </footer>
-
-  <script>
-    // ======= Configuración de rutas (ajustar si tus archivos están en otra carpeta) =======
-    const RUTA_CSV_LISTA = 'criptomonedas_unicas.csv';
-    const RUTA_CSV_DATOS = 'cryptos_unidas.csv';
-
-    // ======= Estado global simple =======
-    let DATA = []; // filas del dataset principal (objetos)
-    let COINS = []; // lista de nombres disponibles
-    let chart; // instancia de Chart.js
-
-    // ======= Utilidades =======
-    const fmt = new Intl.NumberFormat('es-AR', { maximumFractionDigits: 0 });
-    function toDate(s){
-      // Soporta formatos tipo YYYY-MM-DD; si viene otro formato, intentará parsear
-      const d = new Date(s);
-      return isNaN(d) ? null : d;
-    }
-    function ymd(d){
-      if(!d) return '';
-      const pad=n=> String(n).padStart(2,'0');
-      return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
-    }
-    function arrayUnique(a){ return Array.from(new Set(a)); }
-
-    function groupBy(arr, keyFn){
-      const m = new Map();
-      for(const item of arr){
-        const k = keyFn(item);
-        if(!m.has(k)) m.set(k, []);
-        m.get(k).push(item);
+    <script>
+      // Convierte "Binance Coin" -> "Binance_Coin_marketcap.png"
+      function nombreAArchivo(nombre) {
+        return "plots/" + nombre.replace(/\s+/g, "_") + "_marketcap.png";
       }
-      return m;
-    }
 
-    // ======= Carga de CSV =======
-    async function cargarCSV(ruta){
-      return new Promise((resolve, reject) => {
-        Papa.parse(ruta, {
-          download: true,
-          header: true,
-          dynamicTyping: true,
-          skipEmptyLines: true,
-          complete: results => resolve(results.data),
-          error: err => reject(err)
-        });
+      const select = document.getElementById("crypto");
+      const img = document.getElementById("grafico");
+
+      select.addEventListener("change", () => {
+        const nombre = select.value;
+        if (!nombre) {
+          img.style.display = "none";
+          img.removeAttribute("src");
+          img.alt = "Gráfico de la cripto seleccionada";
+          return;
+        }
+        const ruta = nombreAArchivo(nombre);
+        img.style.display = "block";
+        img.src = ruta;
+        img.alt = "Marketcap histórico — " + nombre;
+
+        // Si el archivo no existe, mostramos un aviso suave
+        img.onerror = () => {
+          img.style.display = "none";
+          alert("No encontré el archivo: " + ruta + "\nVerificá el nombre o colocá el PNG en la carpeta plots/");
+        };
       });
-    }
-
-    async function init(){
-      try{
-        // 1) Cargar lista de monedas (columna Name)
-        const lista = await cargarCSV(RUTA_CSV_LISTA);
-        // Soporta CSV con header Name o sin header (tomamos primera columna)
-        COINS = lista.map(row => (row.Name ?? Object.values(row)[0])).filter(Boolean).map(s=>String(s).trim());
-        COINS = arrayUnique(COINS).sort((a,b)=>a.localeCompare(b));
-
-        // Poblar selector múltiple
-        const sel = document.getElementById('selCoins');
-        for(const c of COINS){
-          const opt = document.createElement('option');
-          opt.value = c; opt.textContent = c;
-          sel.appendChild(opt);
-        }
-
-        // 2) Cargar dataset principal
-        DATA = await cargarCSV(RUTA_CSV_DATOS);
-        // Normalizar campos importantes
-        for(const r of DATA){
-          // Ajustar nombres de columnas si vienen con mayúsculas exactas
-          r.Name = r.Name ?? r.nombre ?? r.coin ?? r.currency ?? r.Symbol ?? r.symbol ?? r.Moneda ?? r.moneda;
-          r.Date = toDate(r.Date ?? r.date);
-          // Asegurar numéricos
-          for(const k of ['Marketcap','Close','Open','High','Low','Volume']){
-            const v = r[k] ?? r[k?.toLowerCase?.()] ?? r[k?.toUpperCase?.()];
-            r[k] = typeof v === 'number' ? v : (v ? Number(String(v).replace(/[, ]/g,'')) : null);
-          }
-        }
-
-        // Setear rango por defecto (todo el histórico)
-        const fechas = DATA.map(r=>r.Date).filter(Boolean).sort((a,b)=>a-b);
-        const from = fechas[0], to = fechas.at(-1);
-        document.getElementById('fromDate').value = ymd(from);
-        document.getElementById('toDate').value = ymd(to);
-
-        // Seleccionar por defecto algunas monedas (si existen)
-        const porDefecto = ['Bitcoin','Ethereum','Binance Coin','Cardano','Solana'];
-        for(const opt of sel.options){ if(porDefecto.includes(opt.value)) opt.selected = true; }
-
-        // Render inicial
-        aplicarFiltros();
-
-      }catch(err){
-        console.error(err);
-        alert('No se pudieron cargar los CSV. Verificá las rutas/archivos.');
-      }
-    }
-
-    // ======= Lógica de filtrado y gráficos =======
-    function aplicarFiltros(){
-      const sel = document.getElementById('selCoins');
-      const coinsSel = Array.from(sel.selectedOptions).map(o=>o.value);
-      const metric = document.getElementById('metric').value;
-      const d1 = toDate(document.getElementById('fromDate').value);
-      const d2 = toDate(document.getElementById('toDate').value);
-
-      // Filtrar dataset
-      let rows = DATA.filter(r => r.Date && (!coinsSel.length || coinsSel.includes(r.Name)));
-      if(d1) rows = rows.filter(r => r.Date >= d1);
-      if(d2) rows = rows.filter(r => r.Date <= d2);
-
-      // Agrupar por moneda y ordenar por fecha
-      const byCoin = groupBy(rows, r=>r.Name);
-      for(const [k, arr] of byCoin){ arr.sort((a,b)=>a.Date-b.Date); }
-
-      // Preparar datasets para Chart.js
-      // Eje X: fechas únicas ordenadas
-      const fechas = arrayUnique(rows.map(r=>+r.Date)).sort((a,b)=>a-b).map(ts=>new Date(ts));
-      const labels = fechas.map(d=> ymd(d));
-
-      // Para cada moneda, generamos su serie (alineada por fechas)
-      const datasets = [];
-      for(const coin of byCoin.keys()){
-        const serie = new Map(byCoin.get(coin).map(r=> [ymd(r.Date), r[metric]] ));
-        const data = labels.map(l => (serie.has(l) ? serie.get(l) : null));
-        datasets.push({
-          label: coin,
-          data,
-          borderWidth: 2,
-          spanGaps: true,
-          pointRadius: 0
-        });
-      }
-
-      // Crear/actualizar Chart.js
-      const ctx = document.getElementById('chart').getContext('2d');
-      if(chart) chart.destroy();
-      chart = new Chart(ctx, {
-        type: 'line',
-        data: { labels, datasets },
-        options: {
-          responsive: true,
-          interaction: { mode: 'index', intersect: false },
-          plugins: {
-            legend: { labels: { color: '#cbd5e1' } },
-            tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.formattedValue}` } }
-          },
-          scales: {
-            x: { ticks: { color: '#94a3b8' }, grid: { color: '#1f2937' } },
-            y: { ticks: { color: '#94a3b8' }, grid: { color: '#1f2937' } }
-          }
-        }
-      });
-
-      // === Resumen ===
-      document.getElementById('sumCoins').textContent = coinsSel.length;
-      document.getElementById('sumRange').textContent = `${labels[0] ?? '—'} → ${labels.at(-1) ?? '—'}`;
-
-      // Último valor promedio y máximo histórico promedio
-      let ultimos = [], maximos = [];
-      for(const [coin, arr] of byCoin){
-        const serieOrdenada = arr.filter(r=>Number.isFinite(r[metric] ?? NaN)).sort((a,b)=>a.Date-b.Date);
-        if(serieOrdenada.length){
-          ultimos.push(serieOrdenada.at(-1)[metric]);
-          maximos.push(Math.max(...serieOrdenada.map(r=>r[metric])));
-        }
-      }
-      const prom = xs => xs.length ? xs.reduce((a,b)=>a+b,0)/xs.length : null;
-      const lastAvg = prom(ultimos), maxAvg = prom(maximos);
-      document.getElementById('sumLast').textContent = lastAvg!=null ? fmt.format(lastAvg) : '—';
-      document.getElementById('sumMax').textContent = maxAvg!=null ? fmt.format(maxAvg) : '—';
-    }
-
-    // ======= Eventos UI =======
-    document.getElementById('btnAplicar').addEventListener('click', aplicarFiltros);
-    document.getElementById('btnHoy').addEventListener('click', () => {
-      // Reset al histórico completo
-      const fechas = DATA.map(r=>r.Date).filter(Boolean).sort((a,b)=>a-b);
-      document.getElementById('fromDate').value = ymd(fechas[0]);
-      document.getElementById('toDate').value = ymd(fechas.at(-1));
-      aplicarFiltros();
-    });
-
-    // Init
-    init();
-  </script>
+    </script>
+  </div>
 </body>
 </html>
+
