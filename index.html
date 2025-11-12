@@ -140,10 +140,7 @@
     // Slug para CSV: minúsculas, sin acentos, espacios/puntos → _
     function toSlugCsv(nombre) {
       return nombre
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')  // saca acentos
-        .replace(/[\s.]+/g, '_')                           // espacios y puntos a _
-        .replace(/[^a-zA-Z0-9_]/g, '')                     // limpia raros
-        .toLowerCase();                                    // minúsculas
+        .replace(/\s+/g, '_')                           // solo los espacios 
     }
 
     // Ruta CSV: csv/estadisticas_<slug>.csv
