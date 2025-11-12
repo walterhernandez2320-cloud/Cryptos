@@ -1,0 +1,4 @@
+Litecoin fue lanzada en 2011 por Charlie Lee, un exingeniero de Google. Se conoce como la “plata digital”, en comparación con Bitcoin que es considerado el “oro digital”.
+Está basada en el mismo código que Bitcoin pero con algunas mejoras: bloques cada 2,5 minutos en lugar de 10, mayor suministro total (84 millones) y un algoritmo de minería diferente llamado Scrypt.
+Litecoin fue una de las primeras altcoins del mercado y sirvió como campo de pruebas para futuras mejoras de Bitcoin, como SegWit y la Lightning Network.
+A pesar de perder protagonismo frente a nuevas criptos, sigue siendo una de las más estables y antiguas, con una comunidad fuerte y soporte en casi todos los exchanges.
