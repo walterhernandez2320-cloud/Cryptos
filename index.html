@@ -47,6 +47,20 @@
       color: #aaa; 
       font-size: 0.9em; 
     }
+
+    /* 1️⃣ ESTILO PARA EL TEXTO DE HISTORIA */
+    .historia {
+      display: none;
+      text-align: left;
+      background: #1b1b1b;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 16px auto 0;
+      max-width: 900px;
+      white-space: pre-wrap;
+      line-height: 1.45;
+    }
   </style>
 </head>
 
@@ -89,7 +103,7 @@
     </p>
 
     <img id="grafico" alt="Gráfico de la cripto seleccionada" />
-
+    <div id="historia" class="historia"></div>
   </div>
 
   <script>
@@ -99,8 +113,32 @@
       return "plots/Marketcap_" + nombre.replace(/\s+/g, "_") + ".png";
     }
 
+    /* 2️⃣ FUNCIONES PARA CARGAR .TXT DE HISTORIA */
+    function toSlugBase(nombre) {
+      return nombre.trim().replace(/[\s.]+/g, "_"); // "Crypto.com Coin" → "Crypto_com_Coin"
+    }
+    function rutaTexto(nombre) {
+      return "textos/" + toSlugBase(nombre) + ".txt";
+    }
+
     const select = document.getElementById("crypto");
     const img = document.getElementById("grafico");
+    const historiaBox = document.getElementById("historia"); /* 3️⃣ CAPTURAR EL CONTENEDOR DE TEXTO */
+
+    async function cargarHistoria(nombre) { /* 4️⃣ FUNCIÓN QUE LEE Y MUESTRA EL .TXT */
+      const url = rutaTexto(nombre) + "?v=" + Date.now(); // evita caché
+      historiaBox.style.display = "block";
+      historiaBox.textContent = "Cargando historia de " + nombre + "…";
+      try {
+        const resp = await fetch(url);
+        if (!resp.ok) throw new Error("No se encontró " + url);
+        const texto = await resp.text();
+        historiaBox.textContent = texto.trim() ? texto : "Sin contenido disponible.";
+      } catch (e) {
+        historiaBox.style.display = "none";
+        alert("No encontré el archivo de historia:\n" + url + "\nCreá " + toSlugBase(nombre) + ".txt en /textos");
+      }
+    }
 
     select.addEventListener("change", () => {
       const nombre = select.value;
@@ -108,6 +146,9 @@
       if (!nombre) {
         img.style.display = "none";
         img.src = "";
+        /* 5️⃣ RESETEAR EL TEXTO CUANDO NO HAY SELECCIÓN */
+        historiaBox.style.display = "none";
+        historiaBox.textContent = "";
         return;
       }
 
@@ -123,9 +164,12 @@
 
       img.src = ruta + "?v=" + Date.now(); // evita problemas de caché
       img.alt = "Marketcap — " + nombre;
+
+      cargarHistoria(nombre); /* 5️⃣ 👉 LLAMADA QUE MUESTRA EL .TXT */
     });
   </script>
 </body>
 </html>
+
 
 
