@@ -61,6 +61,20 @@
       white-space: pre-wrap;
       line-height: 1.45;
     }
+
+    /* 2️⃣ NUEVO: ESTILO PARA ESTADÍSTICAS */
+    .stats {
+      display: none;
+      text-align: left;
+      background: #171717;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 12px auto 0;
+      max-width: 900px;
+      white-space: pre-wrap;
+      line-height: 1.45;
+    }
   </style>
 </head>
 
@@ -104,16 +118,19 @@
 
     <img id="grafico" alt="Gráfico de la cripto seleccionada" />
     <div id="historia" class="historia"></div>
+
+    <!-- 3️⃣ NUEVO: CONTENEDOR PARA ESTADÍSTICAS -->
+    <div id="stats" class="stats"></div>
   </div>
 
   <script>
-    // Función para convertir el nombre seleccionado en nombre de archivo
+    // Función para convertir el nombre seleccionado en nombre de archivo de imagen
     function nombreAArchivo(nombre) {
       // Reemplaza espacios por guiones bajos: "Binance Coin" → "Binance_Coin"
       return "plots/Marketcap_" + nombre.replace(/\s+/g, "_") + ".png";
     }
 
-    /* 2️⃣ FUNCIONES PARA CARGAR .TXT DE HISTORIA */
+    /* 4️⃣ FUNCIONES PARA CARGAR .TXT DE HISTORIA */
     function toSlugBase(nombre) {
       return nombre.trim().replace(/[\s.]+/g, "_"); // "Crypto.com Coin" → "Crypto_com_Coin"
     }
@@ -121,11 +138,19 @@
       return "textos/" + toSlugBase(nombre) + ".txt";
     }
 
+    // 5️⃣ NUEVO: RUTA Y CARGA DE ESTADÍSTICAS (TXT)
+    function rutaStats(nombre) {
+      // Sugerencia de nombres: text/stats_<NOMBRE>.txt  (mismo slug que historia)
+      // Ej: "Bitcoin" → text/stats_Bitcoin.txt
+      return "text/stats_" + toSlugBase(nombre) + ".txt";
+    }
+
     const select = document.getElementById("crypto");
     const img = document.getElementById("grafico");
-    const historiaBox = document.getElementById("historia"); /* 3️⃣ CAPTURAR EL CONTENEDOR DE TEXTO */
+    const historiaBox = document.getElementById("historia");
+    const statsBox = document.getElementById("stats");
 
-    async function cargarHistoria(nombre) { /* 4️⃣ FUNCIÓN QUE LEE Y MUESTRA EL .TXT */
+    async function cargarHistoria(nombre) {
       const url = rutaTexto(nombre) + "?v=" + Date.now(); // evita caché
       historiaBox.style.display = "block";
       historiaBox.textContent = "Cargando historia de " + nombre + "…";
@@ -140,15 +165,33 @@
       }
     }
 
+    // 6️⃣ NUEVO: CARGAR ESTADÍSTICAS
+    async function cargarStats(nombre) {
+      const url = rutaStats(nombre) + "?v=" + Date.now(); // evita caché
+      statsBox.style.display = "block";
+      statsBox.textContent = "Cargando estadísticas de " + nombre + "…";
+      try {
+        const resp = await fetch(url);
+        if (!resp.ok) throw new Error("No se encontró " + url);
+        const texto = await resp.text();
+        statsBox.textContent = texto.trim() ? texto : "Sin estadísticas disponibles.";
+      } catch (e) {
+        statsBox.style.display = "none";
+        alert("No encontré el archivo de estadísticas:\n" + url + "\nCreá stats_" + toSlugBase(nombre) + ".txt en /text");
+      }
+    }
+
     select.addEventListener("change", () => {
       const nombre = select.value;
 
       if (!nombre) {
         img.style.display = "none";
         img.src = "";
-        /* 5️⃣ RESETEAR EL TEXTO CUANDO NO HAY SELECCIÓN */
         historiaBox.style.display = "none";
         historiaBox.textContent = "";
+        // 7️⃣ NUEVO: reset stats
+        statsBox.style.display = "none";
+        statsBox.textContent = "";
         return;
       }
 
@@ -165,7 +208,9 @@
       img.src = ruta + "?v=" + Date.now(); // evita problemas de caché
       img.alt = "Marketcap — " + nombre;
 
-      cargarHistoria(nombre); /* 5️⃣ 👉 LLAMADA QUE MUESTRA EL .TXT */
+      // Cargar historia y estadísticas para la cripto seleccionada
+      cargarHistoria(nombre);
+      cargarStats(nombre);
     });
   </script>
 </body>
