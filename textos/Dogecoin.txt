@@ -1,0 +1,4 @@
+Dogecoin nació en diciembre de 2013 como una broma entre dos ingenieros de software, Billy Markus y Jackson Palmer. Se inspiraron en el meme del perro Shiba Inu y crearon una criptomoneda divertida y amigable.
+Lo que comenzó como un chiste se convirtió en una de las comunidades más grandes y activas del mundo cripto. Dogecoin se usa principalmente para propinas en internet y donaciones, aunque también ha sido impulsada por figuras como Elon Musk.
+Utiliza un sistema de minería proof-of-work similar al de Bitcoin, pero con bloques más rápidos y una oferta ilimitada, lo que la hace más inflacionaria.
+A pesar de su origen humorístico, Dogecoin ha tenido picos de popularidad enormes y se mantiene como una de las criptomonedas más reconocidas globalmente.
