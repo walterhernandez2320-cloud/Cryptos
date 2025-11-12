@@ -139,11 +139,10 @@
     }
 
     // 5️⃣ NUEVO: RUTA Y CARGA DE ESTADÍSTICAS (TXT)
-    function rutaStats(nombre) {
-      // Sugerencia de nombres: text/stats_<NOMBRE>.txt  (mismo slug que historia)
-      // Ej: "Bitcoin" → text/stats_Bitcoin.txt
-      return "text/stats_" + toSlugBase(nombre) + ".txt";
-    }
+      function rutaStats(nombre) {
+        // Ej: "Bitcoin" → text/stats_Bitcoin.csv
+        return "text/stats_" + toSlugBase(nombre) + ".csv";
+      }
 
     const select = document.getElementById("crypto");
     const img = document.getElementById("grafico");
@@ -166,6 +165,7 @@
     }
 
     // 6️⃣ NUEVO: CARGAR ESTADÍSTICAS
+// 6️⃣ NUEVO: CARGAR ESTADÍSTICAS DESDE CSV Y RENDERIZAR TABLA
     async function cargarStats(nombre) {
       const url = rutaStats(nombre) + "?v=" + Date.now(); // evita caché
       statsBox.style.display = "block";
@@ -173,11 +173,15 @@
       try {
         const resp = await fetch(url);
         if (!resp.ok) throw new Error("No se encontró " + url);
-        const texto = await resp.text();
-        statsBox.textContent = texto.trim() ? texto : "Sin estadísticas disponibles.";
+        const csv = await resp.text();
+        statsBox.innerHTML = csvToTable(csv); // ← pintamos una tabla HTML
       } catch (e) {
         statsBox.style.display = "none";
-        alert("No encontré el archivo de estadísticas:\n" + url + "\nCreá stats_" + toSlugBase(nombre) + ".txt en /text");
+        alert(
+          "No encontré el archivo de estadísticas (CSV):\n" +
+          url + 
+          "\nSi ya lo generaste, verificá el nombre. Debe estar en /text y llamarse stats_" + toSlugBase(nombre) + ".csv"
+        );
       }
     }
 
