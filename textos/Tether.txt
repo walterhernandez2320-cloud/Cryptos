@@ -1,0 +1,5 @@
+Tether es la primera y más conocida stablecoin del mercado. Nació en 2014 con el objetivo de ofrecer una criptomoneda cuyo valor se mantuviera estable, anclado al dólar estadounidense en una proporción 1:1.
+Cada token USDT está respaldado, en teoría, por reservas equivalentes en dólares u otros activos financieros.
+Tether se usa ampliamente para operaciones de trading y como refugio en momentos de alta volatilidad, ya que permite mover valor sin salir del mundo cripto.
+A lo largo de los años ha enfrentado controversias por la transparencia de sus reservas, aunque sigue siendo la stablecoin más utilizada a nivel global.
+USDT representa un puente entre las finanzas tradicionales y las criptomonedas, y su existencia permitió el crecimiento del mercado cripto moderno.
