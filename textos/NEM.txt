@@ -1,0 +1,5 @@
+NEM, abreviatura de “New Economy Movement”, fue lanzada en 2015 con el objetivo de crear un sistema económico más justo y eficiente basado en blockchain.
+En lugar de usar minería tradicional, NEM utiliza un mecanismo de consenso llamado Proof-of-Importance (PoI), que recompensa a los usuarios no solo por su saldo, sino también por su participación activa en la red.
+Su plataforma fue pionera en permitir contratos inteligentes simples, mosaicos (activos digitales personalizados) y un sistema de reputación integrado.
+Con el tiempo, el equipo de desarrollo creó Symbol, una evolución de NEM con nuevas funciones empresariales.
+Aunque perdió visibilidad frente a otras criptos, NEM sigue siendo valorada por su enfoque en la usabilidad y su impacto en la evolución temprana del ecosistema blockchain.
