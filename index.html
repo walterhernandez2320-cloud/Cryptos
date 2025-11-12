@@ -111,10 +111,6 @@
       <option>XRP</option>
     </select>
 
-    <p class="hint">
-      Las imágenes deben estar en la carpeta <code>plots/</code> con el formato:<br>
-      <code>Marketcap_Nombre.png</code> (por ejemplo <code>Marketcap_Bitcoin.png</code>)
-    </p>
 
     <img id="grafico" alt="Gráfico de la cripto seleccionada" />
     <div id="historia" class="historia"></div>
@@ -141,7 +137,7 @@
     // 5️⃣ NUEVO: RUTA Y CARGA DE ESTADÍSTICAS (TXT)
       function rutaStats(nombre) {
         // Ej: "Bitcoin" → text/stats_Bitcoin.csv
-        return "text/stats_" + toSlugBase(nombre) + ".csv";
+        return "csv/stats_" + toSlugBase(nombre) + ".csv";
       }
 
     const select = document.getElementById("crypto");
