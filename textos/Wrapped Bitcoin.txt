@@ -1,0 +1,5 @@
+Wrapped Bitcoin es un token creado en 2019 para representar Bitcoin en la red Ethereum. Cada WBTC equivale a 1 BTC y está totalmente respaldado por reservas de Bitcoin bloqueadas por custodios verificados.
+Este sistema permite que los usuarios utilicen su Bitcoin en el ecosistema DeFi de Ethereum, accediendo a préstamos, intercambios y contratos inteligentes sin vender su BTC.
+WBTC une el valor y la seguridad de Bitcoin con la flexibilidad de las aplicaciones descentralizadas de Ethereum.
+Es una de las formas más exitosas de “tokenizar” Bitcoin y ha impulsado la interoperabilidad entre cadenas.
+Aunque depende de custodios centralizados, su popularidad demuestra la importancia de conectar redes distintas dentro del mundo cripto.
