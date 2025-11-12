@@ -1,0 +1,4 @@
+EOS fue lanzada en 2018 por la empresa Block.one con la promesa de ser una plataforma blockchain rápida y escalable para aplicaciones descentralizadas.
+Su objetivo principal fue competir con Ethereum, ofreciendo transacciones gratuitas y una velocidad mucho mayor. Utiliza un modelo de consenso llamado Delegated Proof-of-Stake (DPoS), donde los usuarios eligen a los validadores mediante votos.
+Durante su lanzamiento, EOS recaudó más de 4.000 millones de dólares en una de las ICO más grandes de la historia.
+Sin embargo, con el tiempo perdió parte de su protagonismo debido a problemas de centralización y gestión. Aun así, su tecnología sigue siendo usada en varios proyectos y es recordada como una de las redes pioneras en escalabilidad blockchain.
