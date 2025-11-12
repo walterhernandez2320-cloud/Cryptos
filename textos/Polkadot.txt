@@ -1,0 +1,5 @@
+Polkadot fue fundada por Gavin Wood, otro de los cofundadores de Ethereum, y lanzada oficialmente en 2020. Su propósito es conectar múltiples blockchains en un solo ecosistema, permitiendo que diferentes redes se comuniquen entre sí.
+Funciona a través de una cadena principal llamada Relay Chain y múltiples “parachains” (cadenas paralelas) que se conectan para realizar tareas específicas.
+El token DOT se usa para gobernanza, staking y vinculación de nuevas parachains.
+Polkadot es considerado uno de los proyectos más ambiciosos del mundo cripto por su enfoque en la interoperabilidad y la escalabilidad, buscando resolver los límites técnicos que enfrenta Ethereum.
+Su tecnología es compleja, pero representa un paso clave hacia un futuro donde las blockchains no estén aisladas, sino interconectadas y colaborando entre sí.
