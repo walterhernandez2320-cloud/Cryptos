@@ -1,0 +1,4 @@
+Bitcoin fue creado en 2009 por el misterioso Satoshi Nakamoto como la primera criptomoneda descentralizada del mundo. Nació con la idea de ser dinero digital sin bancos ni intermediarios.
+A lo largo del tiempo, Bitcoin se transformó en un activo de inversión global y una reserva de valor conocida como “oro digital”. Su emisión está limitada a 21 millones de monedas, lo que garantiza escasez y protección contra la inflación.
+Ha pasado por ciclos de auge y caída, alcanzando valores récord y siendo adoptado por instituciones financieras, fondos de inversión y hasta gobiernos.
+Aunque es criticado por su consumo energético debido al sistema de minería proof-of-work, sigue siendo la base de todo el mercado cripto y el punto de referencia para medir la evolución del sector.
