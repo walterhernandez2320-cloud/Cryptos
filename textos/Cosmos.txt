@@ -1,0 +1,4 @@
+Cosmos fue lanzado en 2019 con el objetivo de resolver uno de los mayores desafíos del mundo cripto: la interoperabilidad entre blockchains. Su lema es “el Internet de las Blockchains”, porque busca conectar distintas redes para que puedan comunicarse y transferir valor entre sí.
+Está basado en el protocolo Tendermint y utiliza un sistema de consenso proof-of-stake que permite alta velocidad y bajo consumo de energía.
+El token ATOM se usa para participar en la gobernanza, validar transacciones y mantener la seguridad de la red.
+Cosmos ha sido una pieza clave para proyectos que necesitan comunicación entre distintas blockchains, y su arquitectura modular permite que desarrolladores creen nuevas redes fácilmente usando su tecnología.
