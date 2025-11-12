@@ -1,0 +1,5 @@
+IOTA fue creada en 2015 con un objetivo diferente al de la mayoría de las criptomonedas: servir como base tecnológica para el Internet de las Cosas (IoT).
+A diferencia de otras blockchains, IOTA no usa bloques ni mineros, sino una estructura llamada “Tangle”, donde cada transacción confirma a otras dos. Esto permite escalabilidad y cero comisiones, algo ideal para micropagos entre dispositivos conectados.
+El token MIOTA se utiliza para realizar transacciones y mantener la red activa.
+Durante su historia, IOTA ha tenido momentos de innovación y también controversias, especialmente por su enfoque centralizado en los primeros años.
+Hoy sigue siendo una red experimental y prometedora, especialmente para la automatización industrial y los pagos máquina a máquina.
