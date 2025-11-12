@@ -1,0 +1,4 @@
+Monero se lanzó en 2014 con un enfoque claro: la privacidad total. Mientras que la mayoría de las criptomonedas permiten rastrear transacciones, Monero usa tecnologías criptográficas avanzadas como firmas de anillo, direcciones ocultas y transacciones confidenciales para mantener la información completamente privada.
+Esto lo convierte en una moneda muy atractiva para quienes valoran el anonimato y la seguridad, aunque también ha sido criticada por su uso potencial en actividades ilegales.
+Monero no tiene un suministro máximo fijo y se mina mediante prueba de trabajo.
+Con el tiempo, se consolidó como la criptomoneda de referencia en privacidad y seguridad, y su comunidad defiende fuertemente los valores de descentralización y libertad financiera.
