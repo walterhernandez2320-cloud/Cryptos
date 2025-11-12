@@ -83,9 +83,9 @@
 
 <body>
   <div class="contenedor">
-    <h1>TRABAJO PRÁCTICO DE PROGRAMACIÓN</h1>
+    <h1>Analisis historico de criptomonedas</h1>
 
-    <p>Elegí una criptomoneda para ver su gráfico:</p>
+    <p>Elegí una criptomoneda:</p>
 
     <select id="crypto">
       <option value="">-- Seleccionar --</option>
@@ -129,7 +129,7 @@
 
     // Slug base para historias (mantiene mayúsculas/minúsculas)
     function toSlugBase(nombre) {
-      return nombre.trim().replace(/[\s.]+/g, "_"); // "Crypto.com Coin" → "Crypto_com_Coin"
+      return nombre.trim().replace(/\s+/g, "_"); // "Crypto.com Coin" → "Crypto_com_Coin"
     }
 
     function rutaTexto(nombre) {
