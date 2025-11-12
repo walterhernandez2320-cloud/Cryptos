@@ -1,0 +1,4 @@
+Chainlink es un proyecto creado para conectar los contratos inteligentes de las blockchains con datos del mundo real, como precios, clima o resultados deportivos. Fue lanzado en 2017 con el objetivo de resolver el problema de los “oráculos”, es decir, cómo una blockchain puede acceder a información externa de forma segura y verificable.
+Su sistema permite que los contratos inteligentes funcionen con datos externos confiables gracias a una red de nodos descentralizados. Con el crecimiento de las finanzas descentralizadas, Chainlink se convirtió en una pieza esencial de muchas plataformas DeFi.
+El token LINK se utiliza para pagar a los operadores de nodos y garantizar la integridad del sistema.
+Chainlink es considerado una infraestructura clave para el futuro de los contratos inteligentes, ya que permite que el mundo digital y el real se conecten de manera segura y automatizada.
