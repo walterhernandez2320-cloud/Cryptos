@@ -1,0 +1,5 @@
+Solana fue lanzada en 2020 por Anatoly Yakovenko con la meta de crear una blockchain extremadamente rápida y eficiente.
+Su característica más destacada es el mecanismo “Proof of History”, que permite ordenar las transacciones antes de que sean validadas, aumentando drásticamente la velocidad. Gracias a esto, Solana puede procesar miles de transacciones por segundo con comisiones muy bajas.
+El token SOL se usa para pagar comisiones y participar en la validación de la red.
+Solana ganó popularidad en el auge de las finanzas descentralizadas (DeFi) y los NFTs, convirtiéndose en una de las redes más utilizadas del mundo.
+Aunque ha enfrentado interrupciones y problemas técnicos en su red, sigue siendo una de las plataformas más innovadoras y rápidas del ecosistema cripto.
