@@ -1,1 +1,3 @@
-resumen de aave
+Aave nació en 2017 bajo el nombre ETHLend, fundado por Stani Kulechov en Finlandia. En 2018 cambió su nombre a Aave, que significa “fantasma”, y pasó de ser un sistema de préstamos entre pares a un protocolo basado en pools de liquidez. Los usuarios pueden depositar criptomonedas para ganar intereses o pedir prestado dejando activos como garantía.
+Con el tiempo, Aave se consolidó como uno de los principales proyectos de finanzas descentralizadas (DeFi) y lanzó su propia stablecoin llamada GHO. Su token AAVE otorga derechos de gobernanza y participación en decisiones del protocolo. Además, introdujo los famosos “flash loans”, préstamos instantáneos sin garantía tradicional.
+Aave ha expandido sus operaciones a varias blockchains, se ha vuelto clave en el ecosistema DeFi y es estudiado como caso de éxito por su innovación y gestión de liquidez.esumen de aave
