@@ -1,0 +1,5 @@
+USD Coin, conocida como USDC, fue lanzada en 2018 por Circle y Coinbase como una stablecoin totalmente respaldada por activos en dólares estadounidenses.
+Su objetivo es ofrecer una criptomoneda estable, transparente y regulada, con reservas auditadas periódicamente para garantizar la paridad 1:1 con el dólar.
+USDC se ha convertido en una de las stablecoins más utilizadas en el mundo cripto, especialmente en plataformas de DeFi y exchanges centralizados.
+A diferencia de otras monedas estables, su emisión y respaldo están regulados bajo normas financieras estadounidenses, lo que le otorga una mayor confianza institucional.
+USDC es clave para mover dinero dentro del ecosistema blockchain sin la volatilidad típica de otras criptomonedas, y su transparencia la ha convertido en una alternativa confiable para pagos y finanzas digitales.
