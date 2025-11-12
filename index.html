@@ -1,3 +1,6 @@
+
+
+
 <!doctype html>
 <html lang="es">
 <head>
@@ -48,7 +51,7 @@
       font-size: 0.9em; 
     }
 
-    /* 1️⃣ ESTILO PARA EL TEXTO DE HISTORIA */
+    /* Texto de historia */
     .historia {
       display: none;
       text-align: left;
@@ -62,7 +65,7 @@
       line-height: 1.45;
     }
 
-    /* 2️⃣ NUEVO: ESTILO PARA ESTADÍSTICAS */
+    /* Estadísticas */
     .stats {
       display: none;
       text-align: left;
@@ -72,7 +75,7 @@
       padding: 16px;
       margin: 12px auto 0;
       max-width: 900px;
-      white-space: pre-wrap;
+      white-space: normal;
       line-height: 1.45;
     }
   </style>
@@ -111,34 +114,42 @@
       <option>XRP</option>
     </select>
 
-
     <img id="grafico" alt="Gráfico de la cripto seleccionada" />
     <div id="historia" class="historia"></div>
 
-    <!-- 3️⃣ NUEVO: CONTENEDOR PARA ESTADÍSTICAS -->
+    <!-- Contenedor para ESTADÍSTICAS (CSV) -->
     <div id="stats" class="stats"></div>
   </div>
 
   <script>
-    // Función para convertir el nombre seleccionado en nombre de archivo de imagen
+    // Nombre de imagen: plots/Marketcap_<Nombre_con_guion_bajo>.png
     function nombreAArchivo(nombre) {
-      // Reemplaza espacios por guiones bajos: "Binance Coin" → "Binance_Coin"
       return "plots/Marketcap_" + nombre.replace(/\s+/g, "_") + ".png";
     }
 
-    /* 4️⃣ FUNCIONES PARA CARGAR .TXT DE HISTORIA */
+    // Slug base para historias (mantiene mayúsculas/minúsculas)
     function toSlugBase(nombre) {
       return nombre.trim().replace(/[\s.]+/g, "_"); // "Crypto.com Coin" → "Crypto_com_Coin"
     }
+
     function rutaTexto(nombre) {
       return "textos/" + toSlugBase(nombre) + ".txt";
     }
 
-    // 5️⃣ NUEVO: RUTA Y CARGA DE ESTADÍSTICAS (TXT)
-      function rutaStats(nombre) {
-        // Ej: "Bitcoin" → text/stats_Bitcoin.csv
-        return "csv/stats_" + toSlugBase(nombre) + ".csv";
-      }
+    // ---- CSV de estadísticas ----
+    // Slug para CSV: minúsculas, sin acentos, espacios/puntos → _
+    function toSlugCsv(nombre) {
+      return nombre
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')  // saca acentos
+        .replace(/[\s.]+/g, '_')                           // espacios y puntos a _
+        .replace(/[^a-zA-Z0-9_]/g, '')                     // limpia raros
+        .toLowerCase();                                    // minúsculas
+    }
+
+    // Ruta CSV: csv/estadisticas_<slug>.csv
+    function rutaStats(nombre) {
+      return "csv/estadisticas_" + toSlugCsv(nombre) + ".csv";
+    }
 
     const select = document.getElementById("crypto");
     const img = document.getElementById("grafico");
@@ -146,7 +157,7 @@
     const statsBox = document.getElementById("stats");
 
     async function cargarHistoria(nombre) {
-      const url = rutaTexto(nombre) + "?v=" + Date.now(); // evita caché
+      const url = rutaTexto(nombre) + "?v=" + Date.now();
       historiaBox.style.display = "block";
       historiaBox.textContent = "Cargando historia de " + nombre + "…";
       try {
@@ -160,8 +171,40 @@
       }
     }
 
-    // 6️⃣ NUEVO: CARGAR ESTADÍSTICAS
-// 6️⃣ NUEVO: CARGAR ESTADÍSTICAS DESDE CSV Y RENDERIZAR TABLA
+    // Convierte CSV → tabla HTML (detecta ; o , como separador)
+    function csvToTable(csvText) {
+      const raw = csvText.trim();
+      if (!raw) return "<em>Sin datos</em>";
+
+      const lines = raw.split(/\r?\n/);
+      const guessDelim = (line) => {
+        const c = (line.match(/,/g) || []).length;
+        const s = (line.match(/;/g) || []).length;
+        return s > c ? ';' : ',';
+      };
+      const delim = guessDelim(lines[0]);
+
+      const rows = lines.map(line => line.split(delim));
+      let html = `
+        <table style="width:100%; border-collapse:collapse; background:#1b1b1b; border:1px solid #2a2a2a; border-radius:10px; overflow:hidden;">
+          <thead>
+            <tr>
+              ${rows[0].map(h => `<th style="border-bottom:1px solid #2a2a2a; padding:8px 10px; text-align:left; color:#00ffc8;">${h}</th>`).join('')}
+            </tr>
+          </thead>
+          <tbody>
+            ${rows.slice(1).map(r => `
+              <tr>
+                ${r.map(c => `<td style="border-top:1px solid #2a2a2a; padding:8px 10px;">${c}</td>`).join('')}
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+      return html;
+    }
+
+    // Cargar estadísticas desde CSV y renderizar tabla
     async function cargarStats(nombre) {
       const url = rutaStats(nombre) + "?v=" + Date.now(); // evita caché
       statsBox.style.display = "block";
@@ -170,13 +213,14 @@
         const resp = await fetch(url);
         if (!resp.ok) throw new Error("No se encontró " + url);
         const csv = await resp.text();
-        statsBox.innerHTML = csvToTable(csv); // ← pintamos una tabla HTML
+        statsBox.innerHTML = csvToTable(csv);
       } catch (e) {
         statsBox.style.display = "none";
         alert(
           "No encontré el archivo de estadísticas (CSV):\n" +
           url + 
-          "\nSi ya lo generaste, verificá el nombre. Debe estar en /text y llamarse stats_" + toSlugBase(nombre) + ".csv"
+          "\nVerificá el nombre y la carpeta. Debe estar en /csv y llamarse:\n" +
+          "estadisticas_" + toSlugCsv(nombre) + ".csv"
         );
       }
     }
@@ -189,7 +233,6 @@
         img.src = "";
         historiaBox.style.display = "none";
         historiaBox.textContent = "";
-        // 7️⃣ NUEVO: reset stats
         statsBox.style.display = "none";
         statsBox.textContent = "";
         return;
@@ -205,16 +248,13 @@
         img.style.display = "block";
       };
 
-      img.src = ruta + "?v=" + Date.now(); // evita problemas de caché
+      img.src = ruta + "?v=" + Date.now();
       img.alt = "Marketcap — " + nombre;
 
-      // Cargar historia y estadísticas para la cripto seleccionada
+      // Cargar historia y estadísticas
       cargarHistoria(nombre);
       cargarStats(nombre);
     });
   </script>
 </body>
 </html>
-
-
-
