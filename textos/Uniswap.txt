@@ -1,0 +1,5 @@
+Uniswap fue lanzado en 2018 por Hayden Adams como un protocolo de intercambio descentralizado (DEX) que funciona sobre la red Ethereum.
+Su innovación principal es el uso de “pools de liquidez”, donde los usuarios aportan fondos para permitir el intercambio automático de tokens sin necesidad de intermediarios.
+El token UNI se utiliza para gobernanza y recompensas dentro del ecosistema.
+Uniswap revolucionó el mercado cripto al permitir que cualquiera pudiera crear y listar tokens sin autorización, impulsando el auge de las DeFi.
+Es considerado el pionero de los exchanges descentralizados modernos y uno de los proyectos más influyentes del ecosistema Ethereum.
