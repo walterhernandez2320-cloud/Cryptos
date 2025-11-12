@@ -1,0 +1,5 @@
+Stellar fue fundada en 2014 por Jed McCaleb, uno de los cofundadores de Ripple, con la idea de facilitar transferencias rápidas y económicas entre personas y bancos.
+Su propósito es conectar instituciones financieras y permitir que el dinero se mueva de forma rápida, segura y accesible en cualquier parte del mundo.
+El token XLM, también conocido como Lumen, se utiliza para pagar comisiones y mantener la eficiencia del sistema.
+Stellar ha formado alianzas con organizaciones internacionales y bancos para desarrollar soluciones de remesas y pagos transfronterizos.
+Es una de las pocas criptomonedas que ha mantenido un enfoque social, buscando la inclusión financiera y la integración entre monedas digitales y dinero tradicional.
