@@ -1,0 +1,4 @@
+Cardano fue fundado por Charles Hoskinson, uno de los cofundadores de Ethereum, y lanzado oficialmente en 2017. Se presenta como una blockchain de tercera generación enfocada en la seguridad, la escalabilidad y la sostenibilidad.
+A diferencia de muchos proyectos, Cardano basa su desarrollo en investigación científica y revisión académica. Utiliza el algoritmo de consenso proof-of-stake llamado Ouroboros, que reduce el consumo energético en comparación con Bitcoin.
+Con el tiempo, Cardano incorporó contratos inteligentes, lo que le permitió competir con otras plataformas como Ethereum. Su comunidad es muy activa, y su token ADA se utiliza para gobernanza, staking y transacciones dentro de la red.
+Aunque ha sido criticado por avanzar lentamente, se mantiene como uno de los proyectos más sólidos y respetados por su enfoque técnico y científico.
