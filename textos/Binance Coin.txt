@@ -1,0 +1,3 @@
+Binance Coin fue lanzado en 2017 como el token de la plataforma Binance. Al principio servía para pagar comisiones con descuento dentro del exchange, pero más tarde se convirtió en el activo central del ecosistema Binance Smart Chain, hoy llamado BNB Chain.
+Actualmente, BNB se usa en aplicaciones DeFi, para staking, validación de transacciones y participación en nuevos proyectos. Binance realiza “quemas” periódicas de tokens para reducir la oferta total, lo que refuerza su escasez y mantiene el interés en el activo.
+BNB ha evolucionado desde un simple token de utilidad a un pilar fundamental de su propia red blockchain, usada por miles de aplicaciones y contratos inteligentes en todo el mundo.
