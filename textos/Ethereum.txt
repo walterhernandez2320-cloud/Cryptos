@@ -1,0 +1,5 @@
+Ethereum fue lanzado en 2015 por Vitalik Buterin con el objetivo de ampliar lo que Bitcoin no podía hacer: ejecutar contratos inteligentes y crear aplicaciones descentralizadas.
+Su red permite que cualquier desarrollador cree tokens, programas y proyectos financieros sin necesidad de intermediarios. Gracias a Ethereum surgieron los tokens ERC-20, las finanzas descentralizadas (DeFi) y los NFTs.
+Durante años, la red funcionó con prueba de trabajo (PoW), pero en 2022 realizó “The Merge”, una actualización histórica que la convirtió en proof-of-stake (PoS), reduciendo su consumo energético más del 99%.
+Ether (ETH) es su moneda nativa y se usa para pagar comisiones, ejecutar contratos y participar en staking.
+Ethereum es considerada la plataforma más influyente del ecosistema cripto, base sobre la que se han construido miles de proyectos y tokens.
