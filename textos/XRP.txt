@@ -1,0 +1,5 @@
+XRP fue lanzada en 2012 por Ripple Labs con la misión de facilitar transferencias internacionales rápidas y baratas entre bancos y entidades financieras.
+A diferencia de Bitcoin o Ethereum, XRP no se basa en minería, sino en un consenso entre validadores, lo que permite confirmar transacciones en segundos y con costos mínimos.
+Ripple ha trabajado con bancos y empresas en todo el mundo, lo que le dio un enfoque más institucional que la mayoría de las criptomonedas.
+El token XRP se usa principalmente para brindar liquidez en transferencias globales y reducir los tiempos de envío de dinero entre distintos países.
+A lo largo de los años, Ripple ha enfrentado disputas legales con la SEC de Estados Unidos, pero sigue siendo una de las criptomonedas más utilizadas y reconocidas del mercado.
