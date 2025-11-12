@@ -1,0 +1,5 @@
+TRON fue creado por Justin Sun en 2017 con el objetivo de descentralizar Internet, permitiendo que los usuarios publiquen y compartan contenido sin depender de grandes corporaciones.
+Su blockchain permite ejecutar contratos inteligentes, aplicaciones descentralizadas y transferencias rápidas con bajas comisiones.
+El token TRX se usa para pagar transacciones, participar en gobernanza y apoyar el ecosistema de creadores.
+TRON adquirió la plataforma BitTorrent y la integró a su red, potenciando la distribución descentralizada de archivos.
+A pesar de las polémicas alrededor de su fundador, TRON ha crecido de forma constante y es una de las blockchains más activas por cantidad de transacciones diarias.
