@@ -51,7 +51,7 @@
       font-size: 0.9em; 
     }
 
-    /* Texto de historia */
+    /* Esta parte muestra la historia */
     .historia {
       display: none;
       text-align: left;
@@ -65,7 +65,7 @@
       line-height: 1.45;
     }
 
-    /* Estadísticas */
+    /* Esto muestra las estadísticas */
     .stats {
       display: none;
       text-align: left;
@@ -113,21 +113,22 @@
       <option>Wrapped Bitcoin</option>
       <option>XRP</option>
     </select>
-
-    <img id="grafico" alt="Gráfico de la cripto seleccionada" />
+    
+    <!-- Esto muestra el orden en el que aparecen las cosas--> 
     <div id="historia" class="historia"></div>
+    <img id="grafico" alt="Gráfico de la cripto seleccionada" />
+    
 
-    <!-- Contenedor para ESTADÍSTICAS (CSV) -->
+    <!-- Aca se contienen las estadisticas -->
     <div id="stats" class="stats"></div>
   </div>
 
   <script>
-    // Nombre de imagen: plots/Marketcap_<Nombre_con_guion_bajo>.png
+    // Lee el nombre de la imagen en Js
     function nombreAArchivo(nombre) {
       return "plots/Marketcap_" + nombre.replace(/\s+/g, "_") + ".png";
     }
 
-    // Slug base para historias (mantiene mayúsculas/minúsculas)
     function toSlugBase(nombre) {
       return nombre.trim().replace(/\s+/g, "_"); // "Crypto.com Coin" → "Crypto_com_Coin"
     }
@@ -136,14 +137,13 @@
       return "textos/" + toSlugBase(nombre) + ".txt";
     }
 
-    // ---- CSV de estadísticas ----
-    // Slug para CSV: minúsculas, sin acentos, espacios/puntos → _
+    // Slug para los csv
     function toSlugCsv(nombre) {
       return nombre
         .replace(/\s+/g, '_')                           // solo los espacios 
     }
 
-    // Ruta CSV: csv/estadisticas_<slug>.csv
+    // Busca la ruta para los csv
     function rutaStats(nombre) {
       return "csv/estadisticas_" + toSlugCsv(nombre) + ".csv";
     }
@@ -168,7 +168,7 @@
       }
     }
 
-    // Convierte CSV → tabla HTML (detecta ; o , como separador)
+    // Aca se muestra la tabla y se convierte el CSV en una tabla HTML (detecta ; o , como separador)
     function csvToTable(csvText) {
       const raw = csvText.trim();
       if (!raw) return "<em>Sin datos</em>";
@@ -201,7 +201,7 @@
       return html;
     }
 
-    // Cargar estadísticas desde CSV y renderizar tabla
+    // Cargar estadísticas y hace la tabla
     async function cargarStats(nombre) {
       const url = rutaStats(nombre) + "?v=" + Date.now(); // evita caché
       statsBox.style.display = "block";
