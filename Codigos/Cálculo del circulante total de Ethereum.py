@@ -11,5 +11,4 @@ circulante = ultimo["Marketcap"] / ultimo["Close"]
 
 print("Fecha:", ultimo["Date"])
 print("Marketcap:", ultimo["Marketcap"])
-print("Precio (Close):", ultimo["Close"])
 print("Circulante total:", circulante)
